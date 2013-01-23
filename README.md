@@ -23,3 +23,13 @@ Or you can clone the git repository, then use `runApp()`:
 setwd("~/shiny_example")
 runApp()
 ```
+
+
+To run a Shiny app from a subdirectory in the repo or zip file, you can use the `subdir` argument. This repository happens to contain another copy of the app in `inst/shinyapp/`.
+
+```R
+runGitHub("shiny_example", "rstudio", subdir = "inst/shinyapp/")
+
+runUrl("https://github.com/rstudio/shiny_example/archive/master.tar.gz",
+  subdir = "inst/shinyapp/")
+```
