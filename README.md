@@ -1,3 +1,7 @@
+This is a editing version of shiny r server example. the source file is adapted from Shiny exmaple. 
+
+
+
 # Example Shiny app
 
 This is an example application for Shiny.
