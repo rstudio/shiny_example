@@ -1,21 +1,18 @@
+
+
 shinyServer(function(input, output) {
+  # this is an example adapted from shiny tutorial 
+  # Expression that generates a plot of the distribution. The expression
+  # is wrapped in a call to renderPlot to indicate that:
+  #
+  #  1) It is "reactive" and therefore should be automatically 
+  #     re-executed when inputs change
+  #  2) Its output type is a plot 
+  #
+  output$distPlot <- renderPlot({
 
-  output$main_plot <- reactivePlot(width = 400, height = 300, function() {
-
-    hist(faithful$eruptions,
-      probability = TRUE,
-      breaks = as.numeric(input$n_breaks),
-      xlab = "Duration [minutes]",
-      main = "Geyser eruption duration")
-
-    if (input$individual_obs) {
-      rug(faithful$eruptions)
-    }
-
-    if (input$density) {
-      dens <- density(faithful$eruptions, adjust = input$bw_adjust)
-      lines(dens, col = "blue")
-    }
-
+    # generate an rnorm distribution and plot it
+    dist <- rnorm(input$obs)
+    hist(dist)
   })
 })
