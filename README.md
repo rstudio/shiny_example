@@ -5,7 +5,7 @@ This document is for educational purpose only
 
 
 
-To run the prototype on localhost:
+To run the prototype on localhost, you may issue the following comamnd in R environment.
 
 ```R
 install.packages("shiny")
