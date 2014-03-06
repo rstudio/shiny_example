@@ -1,26 +1,22 @@
-shinyUI(bootstrapPage(
 
-  headerPanel("IS415 Testing File"),
-  selectInput(inputId = "n_breaks",
-              label = "Number of bins in histogram (approximate):",
-              choices = c(10, 20, 35, 50),
-              selected = 20),
 
-  checkboxInput(inputId = "individual_obs",
-                label = strong("Show individual observations"),
-                value = FALSE),
+# Define UI for application that plots random distributions 
+shinyUI(pageWithSidebar(
 
-  checkboxInput(inputId = "density",
-                label = strong("Show density estimate"),
-                value = FALSE),
+  # Application title
+  headerPanel("IS415 testing prototype"),
 
-  plotOutput(outputId = "main_plot", height = "300px"),
+  # Sidebar with a slider input for number of observations
+  sidebarPanel(
+    sliderInput("obs", 
+                "Number of observations:", 
+                min = 1,
+                max = 1000, 
+                value = 500)
+  ),
 
-  # Display this only if the density is shown
-  conditionalPanel(condition = "input.density == true",
-    sliderInput(inputId = "bw_adjust",
-                label = "Bandwidth adjustment:",
-                min = 0.2, max = 2, value = 1, step = 0.2)
+  # Show a plot of the generated distribution
+  mainPanel(
+    plotOutput("distPlot")
   )
-
 ))
