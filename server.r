@@ -5,7 +5,7 @@ shinyServer(function(input, output) {
     hist(faithful$eruptions,
       probability = TRUE,
       breaks = as.numeric(input$n_breaks),
-      xlab = "Duration (minutes)",
+      xlab = "Duration [minutes]",
       main = "Geyser eruption duration")
 
     if (input$individual_obs) {
