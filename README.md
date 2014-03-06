@@ -11,3 +11,6 @@ To run the prototype on localhost, you may issue the following comamnd in R envi
 install.packages("shiny")
 shiny::runGitHub('shiny_prototype','cherryctsien')
 ```
+
+Referene about file input is available here
+http://stackoverflow.com/questions/17352086/how-can-i-update-an-shiny-fileinput-object
