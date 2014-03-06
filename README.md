@@ -1,4 +1,5 @@
 This is a editing version of shiny r server example. the source file is adapted from Shiny exmaple. 
+This document is for educational purpose only
 
 
 
