@@ -2,7 +2,7 @@
 # the basic commands ot plot rnoms have the following structure
 # to combine with other plotting options, it is then adapted with a switch statement,
 # this structure can be used to implement our splitted codes 
-
+library(maptools)
 
 shinyServer(function(input, output) {
 
@@ -45,7 +45,12 @@ shinyServer(function(input, output) {
   
   # testing nni
    output$nniOutput <- renderPlot({
-    dist <- rnorm(input$nniInput)
-    hist(dist)
+    #dist <- rnorm(input$nniInput)
+    #hist(dist)
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    nnd <- nndist(nm_ppp)
+    hist(nnd)
    })
 })
