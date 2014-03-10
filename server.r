@@ -44,7 +44,7 @@ shinyServer(function(input, output) {
   
   
   # testing nni
-   output$nniOutput-nnd <- renderPlot({
+   output$nniOutputnnd <- renderPlot({
     #dist <- rnorm(input$nniInput)
     #hist(dist)
     nm <- readShapeSpatial("data/nniDataIn.shp")
