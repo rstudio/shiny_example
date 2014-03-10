@@ -74,4 +74,12 @@ shinyServer(function(input, output) {
     plot(G)
    })   
    
+  output$clarkevans <- renderPrint({
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    clarkevans(nm_ppp)
+    clarkevans.test(nm_ppp)
+  })
+   
 })
