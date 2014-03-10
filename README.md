@@ -9,6 +9,8 @@ To run the prototype on localhost, you may issue the following comamnd in R envi
 
 ```R
 install.packages("shiny")
+install.packages("maptools")
+install.packages("spatstat")
 shiny::runGitHub('shiny_prototype','cherryctsien')
 ```
 
