@@ -53,4 +53,14 @@ shinyServer(function(input, output) {
     nnd <- nndist(nm_ppp)
     hist(nnd)
    })
+   
+   output$nniOutputnni <- renderPlot({
+    #dist <- rnorm(input$nniInput)
+    #hist(dist)
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    nni <- nnfun(nm_ppp)
+    plot(nni)
+   })
 })
