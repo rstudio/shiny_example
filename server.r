@@ -2,10 +2,7 @@
 # the basic commands ot plot rnoms have the following structure
 # to combine with other plotting options, it is then adapted with a switch statement,
 # this structure can be used to implement our splitted codes 
-#   output$distPlot <- renderPlot({
-#    dist <- rnorm(input$obs)
-#    hist(dist)
-#   })
+
 
 shinyServer(function(input, output) {
 
@@ -44,4 +41,11 @@ shinyServer(function(input, output) {
   output$table <- renderTable({
     data.frame(x=data())
   })
+  
+  
+  
+   output$nniOuput <- renderPlot({
+    dist <- rnorm(input$nniInput)
+    hist(dist)
+   })
 })
