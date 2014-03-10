@@ -1,5 +1,4 @@
-
-# Define server logic for random distribution application
+# a sample R interface from shiny website
 shinyServer(function(input, output) {
 
   # Reactive expression to generate the requested distribution. This is 
