@@ -92,4 +92,11 @@ shinyServer(function(input, output) {
     plot(qc)
    })   
    
+  output$quadratOutputSummary <- renderPrint({
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    quadrat.test(nm_ppp, 6, 4)
+  })
+   
 })
