@@ -81,5 +81,15 @@ shinyServer(function(input, output) {
     clarkevans(nm_ppp)
     clarkevans.test(nm_ppp)
   })
+  
+  output$quadratOutputPlot <- renderPlot({
+    #dist <- rnorm(input$nniInput)
+    #hist(dist)
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    qc <- quadratcount(nm_ppp, 6, 4)
+    plot(qc)
+   })   
    
 })
