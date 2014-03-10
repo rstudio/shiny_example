@@ -43,7 +43,7 @@ shinyServer(function(input, output) {
   })
   
   
-  
+  # testing nni
    output$nniOuput <- renderPlot({
     dist <- rnorm(input$nniInput)
     hist(dist)
