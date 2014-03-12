@@ -1,21 +1,102 @@
+# a sample R interface from shiny website
+# the basic commands ot plot rnoms have the following structure
+# to combine with other plotting options, it is then adapted with a switch statement,
+# this structure can be used to implement our splitted codes 
+library(maptools)
+
 shinyServer(function(input, output) {
 
-  output$main_plot <- reactivePlot(width = 400, height = 300, function() {
+  # Reactive expression to generate the requested distribution. This is 
+  # called whenever the inputs change. The output renderers defined 
+  # below then all used the value computed from this expression
+  data <- reactive({  
+    dist <- switch(input$dist,
+                   norm = rnorm,
+                   unif = runif,
+                   lnorm = rlnorm,
+                   exp = rexp,
+                   rnorm)
 
-    hist(faithful$eruptions,
-      probability = TRUE,
-      breaks = as.numeric(input$n_breaks),
-      xlab = "Duration (minutes)",
-      main = "Geyser eruption duration")
-
-    if (input$individual_obs) {
-      rug(faithful$eruptions)
-    }
-
-    if (input$density) {
-      dens <- density(faithful$eruptions, adjust = input$bw_adjust)
-      lines(dens, col = "blue")
-    }
-
+    dist(input$n)
   })
+
+  # Generate a plot of the data. Also uses the inputs to build the 
+  # plot label. Note that the dependencies on both the inputs and
+  # the data reactive expression are both tracked, and all expressions 
+  # are called in the sequence implied by the dependency graph
+  output$plot <- renderPlot({
+    dist <- input$dist
+    n <- input$n
+
+    hist(data(), 
+         main=paste('r', dist, '(', n, ')', sep=''))
+  })
+
+  # Generate a summary of the data
+  output$summary <- renderPrint({
+    summary(data())
+  })
+
+  # Generate an HTML table view of the data
+  output$table <- renderTable({
+    data.frame(x=data())
+  })
+  
+  
+  # testing nni
+   output$nniOutputnnd <- renderPlot({
+    #dist <- rnorm(input$nniInput)
+    #hist(dist)
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    nnd <- nndist(nm_ppp)
+    hist(nnd)
+   })
+   
+   output$nniOutputnni <- renderPlot({
+    #dist <- rnorm(input$nniInput)
+    #hist(dist)
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    nni <- nnfun(nm_ppp)
+    plot(nni)
+   })
+
+   output$nniOutputGtest <- renderPlot({
+    #dist <- rnorm(input$nniInput)
+    #hist(dist)
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    G <- Gest(nm_ppp)
+    plot(G)
+   })   
+   
+  output$nniOutputclarkevans <- renderPrint({
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    clarkevans(nm_ppp)
+    clarkevans.test(nm_ppp)
+  })
+  
+  output$quadratOutputPlot <- renderPlot({
+    #dist <- rnorm(input$nniInput)
+    #hist(dist)
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    qc <- quadratcount(nm_ppp, 6, 4)
+    plot(qc)
+   })   
+   
+  output$quadratOutputSummary <- renderPrint({
+    nm <- readShapeSpatial("data/nniDataIn.shp")
+    nmp <- as(nm, "SpatialPoints")
+    nm_ppp <- as(nmp, "ppp")
+    quadrat.test(nm_ppp, 6, 4)
+  })
+   
 })

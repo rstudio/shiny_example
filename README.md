@@ -1,35 +1,18 @@
-# Example Shiny app
+# prototype
 
-This is an example application for Shiny.
-The main purpose of this example is to illustrate how to run Shiny apps from a remote source.
-There are many ways to download and run it:
+This is a editing version of shiny r server example. the source file is adapted from Shiny exmaple. 
+This document is for educational purpose only
 
-```R
-library(shiny)
 
-# Easiest way is to use runGitHub
-runGitHub("shiny_example", "rstudio")
 
-# Run a tar or zip file directly
-runUrl("https://github.com/rstudio/shiny_example/archive/master.tar.gz")
-runUrl("https://github.com/rstudio/shiny_example/archive/master.zip")
-```
-
-Or you can clone the git repository, then use `runApp()`:
+To run the prototype on localhost, you may issue the following comamnd in R environment.
 
 ```R
-# First clone the repository with git. If you have cloned it into
-# ~/shiny_example, first go to that directory, then use runApp().
-setwd("~/shiny_example")
-runApp()
+install.packages("shiny")
+install.packages("maptools")
+install.packages("spatstat")
+shiny::runGitHub('shiny_prototype','cherryctsien')
 ```
 
-
-To run a Shiny app from a subdirectory in the repo or zip file, you can use the `subdir` argument. This repository happens to contain another copy of the app in `inst/shinyapp/`.
-
-```R
-runGitHub("shiny_example", "rstudio", subdir = "inst/shinyapp/")
-
-runUrl("https://github.com/rstudio/shiny_example/archive/master.tar.gz",
-  subdir = "inst/shinyapp/")
-```
+Referene about file input is available here
+http://stackoverflow.com/questions/17352086/how-can-i-update-an-shiny-fileinput-object
